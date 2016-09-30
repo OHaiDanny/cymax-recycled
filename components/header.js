@@ -8,7 +8,7 @@ var Header = React.createClass({
                 <div className="container">
                     <div className="row">
                         <figure className="col-md-3">
-                            <img src="/assets/img/cymax-recycled-alt.svg" alt="Cymax Recycled" />
+                            <a href="/"><img src="/assets/img/cymax-recycled-alt.svg" alt="Cymax Recycled" /></a>
                         </figure>
                         <nav className="col-md-6 col-md-push-3">
                             <li>

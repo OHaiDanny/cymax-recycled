@@ -13,7 +13,7 @@ var AddProductModal = React.createClass({
                             <button type="button" className="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
-                            <h4 className="modal-title">Recycle New Product</h4>
+                            <h1 className="modal-title">Recycle New Product</h1>
                         </div>
                         <div className="modal-body">
                             <form>
@@ -96,6 +96,16 @@ var AddProductModal = React.createClass({
                                     <label className="col-sm-3 control-label" htmlFor="cvv">Card CVV</label>
                                     <div className="col-sm-3">
                                       <input type="text" className="form-control" name="cvv" id="cvv" placeholder="Security Code" />
+                                    </div>
+                                  </div>
+                                  <div className="form-group row">
+                                    <label className="col-sm-3 control-label" htmlFor="dateListed">Days Listed</label>
+                                    <div className="col-sm-3">
+                                      <select className="form-control" name="daysListed">
+                                            <option value="24">1 week ($5.99)</option>
+                                            <option value="25">1 month ($18.99)</option>
+                                            <option value="26">3 months ($40.99)</option>
+                                          </select>
                                     </div>
                                   </div>
                                 </fieldset>

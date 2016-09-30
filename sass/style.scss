@@ -58,6 +58,10 @@ h5 {
     margin-bottom: 1.5rem;
 }
 
+strong {
+    font-weight:500;
+}
+
 p {
     margin-bottom: 1.5rem;
     font-size: 1.2rem;
@@ -65,6 +69,16 @@ p {
 
 a {
     cursor: pointer;
+    color:$cymaxYellow;
+    &:hover {
+        color:$cymaxYellow;
+        opacity:0.7;
+    }
+}
+
+.modal-title {
+    font-weight:900;
+    font-size:1.5rem;
 }
 
 img {
@@ -184,6 +198,53 @@ nav {
     }
 }
 
+#tag-display {
+    margin-top:2rem;
+    color:white;
+    h5 {
+        font-size:1.2rem;
+        text-align:center;
+        font-weight:300;
+    }
+    
+    ul {
+        text-align:center;
+        li {
+            position:relative;
+            display:inline-block;
+            background:white;
+            color:$cymaxYellow;
+            font-weight:500;
+            font-size:1.25rem;
+            text-transform:uppercase;
+            letter-spacing:1px;
+            padding:0.5rem 1rem;
+            @include radius(5px);
+            margin-right:5rem;
+            &:nth-of-type(n+2):before {
+                content:'\f067';
+                @include psudoIcons;
+                left:-3rem;
+                color:white;
+                font-size:2rem;
+            }
+            
+            .fa-close {
+                position:absolute;
+                top:-12px;
+                right:-12px;
+                line-height:normal;
+                width:24px;
+                height:24px;
+                font-size:22px;
+                background:$cymaxYellow;
+                color:white;
+                @include radius(50%);
+            }
+        }
+    }
+}
+
 
 /* BODY 
 -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
@@ -218,6 +279,21 @@ nav {
             font-size: 1.25rem;
             font-weight: 300;
         }
+        .product-tags {
+            li {
+                position:relative;
+                display:inline-block;
+                color:$cymaxYellow;
+                background:transparent;
+                border:1px solid $cymaxYellow;
+                font-weight:400;
+                font-size:0.85rem;
+                text-transform:uppercase;
+                padding:0.25rem;
+                margin-right:0.2rem;
+                @include radius(5px);
+            }
+        }
         .salePrice {
             font-size: 1rem;
             text-align: right;
@@ -250,6 +326,11 @@ nav {
             font-size: 1rem;
             text-transform: uppercase;
             padding: 0.5rem 3rem;
+        }
+        .contact-info {
+            p {
+                margin:0 0 0.5rem;
+            }
         }
     }
 }
