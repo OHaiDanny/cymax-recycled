@@ -1,10 +1,10 @@
+var React = require('react');
+var ReactDom = require('react-dom');
 require('handlebars');
 require('lodash');
 
 var productsTemplate = require('./productCatalog.handlebars');
-//var productsApi = 'http://www.bestbuy.ca/api/v2/json/search?categoryid=departments';
-var productsList = {
-    products: [
+var productsList = [
         {
             image: 'https://media.cymaxstores.com/Images/1453/490267-L.jpg',
             name: 'Abbyson Living Beverly Leather Sofa in Espresso',
@@ -42,49 +42,80 @@ var productsList = {
             sku: '42000-23-14-PKG',
             description: 'Frame constructions have been tested with various equipment to simulate the home and transportation environments to insure durability. Corners are glued, blocked and stapled. Seats and back spring rails are cut from 7/8” hardwood. Stripes and patterns are match cut. All fabrics are pre-approved for wearability and durability against AHFA standards. Features UltraPlush seating.'
         }
-    ]
-};
+];
 
-var showDetails = require('../productDropDown/productDropDown.js');
-
-$(document).ready(function () {
-    getProducts();
-});
-
-function getProducts() {
-    loadProducts(productsList);
+$(document).ready(function() {
     productClickListener();
-}
-
-//function setProducts(categoryID) {
-//    console.log('category ID', categoryID);
-//    $.ajax({
-//        url: 'http://www.bestbuy.ca/api/v2/json/search?categoryid=' + categoryID,
-//        type: 'GET',
-//        crossDomain: true,
-//        dataType: 'jsonp',
-//        success: function (data) {
-//            loadProducts(data);
-//            productClickListener();
-//        },
-//        error: function () {
-//            alert('Failed!');
-//        }
-//    });
-//}
-
-function loadProducts(list) {
-    console.log(list);
-    var output = productsTemplate(list);
-    $('#products').empty().append(output);
-}
+})
 
 function productClickListener() {
     $('.product-box').on('click', function () {
-        var sku = $(this).data('sku');
-        console.log("SKU", sku);
         $(this).toggleClass('opened').find('.details').slideToggle(300);
     });
 }
 
-//module.exports = setProducts;
+var ProductList = React.createClass({
+    getInitialState: function() {
+        return {
+            products: []
+        }
+    },
+    componentDidMount: function() {
+        console.log('mounted');  
+        this.setState({
+            products: productsList
+        });
+    },
+    render() {
+        return (
+            <div id="product-container" className="container">
+                <div className="row">
+                    <div id="products" className="col-sm-12">
+                        {this.state.products.map(function(product){
+                           return (
+                                <div key={product.sku} className="col-sm-12 product-box">
+                                    <section className="mini-content">
+                                        <figure className="col-sm-1">
+                                            <img src={product.image} alt="{product.name}" />
+                                        </figure>
+                                        <section className="col-sm-7">
+                                            <h5>{product.name}</h5>
+                                        </section>
+                                        <div className="col-sm-3">
+                                            <p className="salePrice"><strong>${product.price}</strong></p>
+                                        </div>
+                                        <div className="col-sm-1">
+                                            <div className="arrow">
+                                                <i className="fa fa-angle-down"></i>
+                                            </div>
+                                        </div>
+                                    </section>
+                                    <section className="details">
+                                        <div className="row">
+                                            <h3>{product.name}</h3>
+                                            <div className="col-md-6">
+                                                <img src={product.image} alt="{product.name}" />
+                                            </div>
+                                            <div className="col-md-6">
+                                                <section id="product-description">
+                                                    <h4>Overview</h4>
+                                                    <p>{product.description}</p>
+                                                    <div id="product-info">
+                                                        <p><strong>SKU:</strong><span> {product.sku}</span></p>
+                                                    </div>
+                                                    <button className="btn btn-primary btn-success">Buy Item</button>
+                                                </section>
+                                            </div>
+                                        </div>
+                                    </section>
+                                </div>
+                            )
+                        })}
+                    </div>
+                </div>
+            </div>
+        )
+    }
+});
+
+module.exports = ProductList;
