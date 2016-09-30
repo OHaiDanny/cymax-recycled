@@ -4,6 +4,7 @@ var Header = require('../components/header');
 var Spacer = require('../components/spacer');
 var Search = require('../components/search');
 var ProductList = require('../components/products/products');
+var AddProductModal = require('../components/addProduct');
 
 require('bootstrap-webpack');
 require("../sass/style.scss");
@@ -17,6 +18,7 @@ var CymaxRecycled = React.createClass({
         <Spacer />
         <Search />
         <ProductList />
+        <AddProductModal />
       </div>
     )
   }

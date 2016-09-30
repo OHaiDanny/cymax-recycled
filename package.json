@@ -23,6 +23,7 @@
   },
   "dependencies": {
     "babel-preset-react": "^6.16.0",
+    "bootstrap": "^3.3.7",
     "bootstrap-webpack": "0.0.5",
     "css-loader": "^0.25.0",
     "exports-loader": "^0.6.3",
